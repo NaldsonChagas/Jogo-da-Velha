@@ -1,0 +1,32 @@
+.game-info-area {
+  border: 1.2px solid #4b4545;
+  margin-top: 20px;
+  position: relative;
+  bottom: 5px;
+}
+
+.game {
+  margin-top: 70px;
+}
+
+.space {
+  color: #e7e7e7;
+}
+
+.quadrant {
+  background-color: #E7E7E7;
+  margin: auto;
+  height: 40%;
+  width: 20%;
+}
+
+.quadrant:active {
+  background-color: #8A8A8A;
+}
+
+.quadrant h1 {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 70px;
+  cursor: pointer;
+}
