@@ -4,6 +4,16 @@ class GameTemplate extends Template {
     return `
     <div class="row game-info-area col-md-8">
       <table class="table" id="players-info">
+        <tr>
+          <td>Jogador 1:</td>
+          <td id="player1-name"></td>
+          <td id="player1-char"></td>
+        </tr>
+        <tr>
+          <td>Jogador 2:</td>
+          <td id="player2-name"></td>
+          <td id="player2-char"></td>
+        </tr>
       </table>
     </div>
 
