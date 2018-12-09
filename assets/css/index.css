@@ -7,6 +7,7 @@ body {
 .title {
   background-color: #57c8ff;
   color: white;
+  margin-bottom: 20px;
 }
 
 .container {
@@ -18,7 +19,8 @@ body {
 
 .row {
   margin: auto;
-  margin-bottom: 10px;
   width: 100%;
   min-height: 100px;
+  position: relative;
+  bottom: 0px;
 }

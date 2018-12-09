@@ -16,45 +16,52 @@ class GameTemplate extends Template {
         </tr>
       </table>
     </div>
-
     <div class="game">
+      <div class="text-center col-md-8">
+        <h4 id="player-time">Vez do jogador: Naldson</h4>
+      </div>
       <div class="row col-md-8">
         <div class="quadrant" id="quadrant-1">
-          <h1>X</h1>
+          <h1 class="space">X</h1>
         </div>
         <div class="quadrant">
-          <h1>X</h1>
+          <h1 class="space">X</h1>
         </div>
         <div class="quadrant">
-          <h1>X</h1>
-        </div>
-      </div>
-
-      <div class="row col-md-8">
-        <div class="quadrant">
-          <h1>X</h1>
-        </div>
-        <div class="quadrant">
-          <h1>X</h1>
-        </div>
-        <div class="quadrant">
-          <h1>X</h1>
+          <h1 class="space">X</h1>
         </div>
       </div>
 
       <div class="row col-md-8">
         <div class="quadrant">
-          <h1>X</h1>
+          <h1 class="space">X</h1>
         </div>
         <div class="quadrant">
-          <h1>X</h1>
+          <h1 class="space">X</h1>
         </div>
         <div class="quadrant">
-          <h1>X</h1>
+          <h1 class="space">X</h1>
+        </div>
+      </div>
+
+      <div class="row col-md-8">
+        <div class="quadrant">
+          <h1 class="space">X</h1>
+        </div>
+        <div class="quadrant">
+          <h1 class="space">X</h1>
+        </div>
+        <div class="quadrant">
+          <h1 class="space">X</h1>
         </div>
       </div>
     </div>
     `;
+  }
+
+  addValueInElement(element, value) {
+    let playerTimeEl = document.querySelector(element);
+    playerTimeEl.innerHTML = value;
   }
 
 }

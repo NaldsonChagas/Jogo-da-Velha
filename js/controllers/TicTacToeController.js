@@ -3,14 +3,32 @@ class TicTacToe {
   constructor() {
 
     this._players = [];
+
     this._ticTacToeView = new TicTacToeView();
+    this._formTemplate = new FormTemplate();
+    this._gameTemplate = new GameTemplate();
+
+    this._lastPLayer;
 
     this.init();
   }
 
   init() {
-    const formTemplate = new FormTemplate();
-    this._ticTacToeView.addTemplate(formTemplate.getTemplate());
+    this._ticTacToeView.addTemplate(this._formTemplate.getTemplate());
+  }
+
+  choosePlayerTime() {
+    if (!this._lastPLayer || this._lastPLayer == this._players[1]) 
+      this._lastPLayer = this._players[0];
+    else 
+      this._lastPLayer = this._players[1];
+    
+    this._gameTemplate.addValueInElement('#player-time',
+     `Vez do jogador: ${this._lastPLayer.name}`);
+  }
+
+  play() {
+    this.choosePlayerTime();
   }
 
   addPlayer(event) {
@@ -33,14 +51,18 @@ class TicTacToe {
   }
 
   initGameTemplate() {
-    this._ticTacToeView.addTemplate(new GameTemplate().getTemplate());
+    this._ticTacToeView.addTemplate(this._gameTemplate.getTemplate());
 
-    const $ = document.querySelector.bind(document);
-    $('#player1-name').textContent = this._players[0].name;
-    $('#player1-char').textContent = this._players[0].char;
-    $('#player2-name').textContent = this._players[1].name;
-    $('#player2-char').textContent = this._players[1].char;
+    this._gameTemplate.addValueInElement('#player1-name',
+     this._players[0].name);
+    this._gameTemplate.addValueInElement('#player1-char',
+     this._players[0].char);
+    this._gameTemplate.addValueInElement('#player2-name',
+     this._players[1].name);
+    this._gameTemplate.addValueInElement('#player2-char',
+     this._players[1].char);
 
+    this.play();
   }
 
 }
