@@ -8,7 +8,7 @@ class TicTacToe {
     this._formTemplate = new FormTemplate();
     this._gameTemplate = new GameTemplate();
 
-    this._lastPLayer;
+    this._playerTime;
 
     this.init();
   }
@@ -17,18 +17,32 @@ class TicTacToe {
     this._ticTacToeView.addTemplate(this._formTemplate.getTemplate());
   }
 
-  choosePlayerTime() {
-    if (!this._lastPLayer || this._lastPLayer == this._players[1]) 
-      this._lastPLayer = this._players[0];
+  changePlayerTime() {
+    if (!this._playerTime || this._playerTime == this._players[1]) 
+      this._playerTime = this._players[0];
     else 
-      this._lastPLayer = this._players[1];
+      this._playerTime = this._players[1];
     
     this._gameTemplate.addValueInElement('#player-time',
-     `Vez do jogador: ${this._lastPLayer.name}`);
+     `Vez do jogador: ${this._playerTime.name}`);
   }
 
   play() {
-    this.choosePlayerTime();
+    this.changePlayerTime();
+
+    let quadrants = document.querySelectorAll('.quadrant');
+
+    quadrants.forEach((quadrant) => {
+      quadrant.addEventListener('click', () => {
+
+        let h1 = document.createElement('h1');
+        h1.textContent = this._playerTime.char;
+        quadrant.innerHTML = '';
+        quadrant.appendChild(h1);
+
+        this.changePlayerTime();
+      });
+    });
   }
 
   addPlayer(event) {

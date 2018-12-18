@@ -24,34 +24,34 @@ class GameTemplate extends Template {
         <div class="quadrant" id="quadrant-1">
           <h1 class="space">X</h1>
         </div>
-        <div class="quadrant">
+        <div class="quadrant" id="quadrant-2">
           <h1 class="space">X</h1>
         </div>
-        <div class="quadrant">
-          <h1 class="space">X</h1>
-        </div>
-      </div>
-
-      <div class="row col-md-8">
-        <div class="quadrant">
-          <h1 class="space">X</h1>
-        </div>
-        <div class="quadrant">
-          <h1 class="space">X</h1>
-        </div>
-        <div class="quadrant">
+        <div class="quadrant" id="quadrant-3">
           <h1 class="space">X</h1>
         </div>
       </div>
 
       <div class="row col-md-8">
-        <div class="quadrant">
+        <div class="quadrant" id="quadrant-4">
           <h1 class="space">X</h1>
         </div>
-        <div class="quadrant">
+        <div class="quadrant" id="quadrant-5">
           <h1 class="space">X</h1>
         </div>
-        <div class="quadrant">
+        <div class="quadrant" id="quadrant-6">
+          <h1 class="space">X</h1>
+        </div>
+      </div>
+
+      <div class="row col-md-8">
+        <div class="quadrant" id="quadrant-7">
+          <h1 class="space">X</h1>
+        </div>
+        <div class="quadrant" id="quadrant-8">
+          <h1 class="space">X</h1>
+        </div>
+        <div class="quadrant" id="quadrant-9">
           <h1 class="space">X</h1>
         </div>
       </div>
