@@ -9,8 +9,23 @@ class TicTacToe {
     this._gameTemplate = new GameTemplate();
 
     this._playerTime;
+    this._winnerPlayer;
 
-    this.init();
+    //this.init();
+    this.initOnGame();
+  }
+
+  /*
+
+    TEMPORARY METHOD
+
+  */
+  initOnGame() {
+    this._players.push(new Player('Naldson', 'X'));
+    this._players.push(new Player('Llala', 'O'));
+
+    this.initGameTemplate();
+    
   }
 
   init() {
@@ -22,27 +37,65 @@ class TicTacToe {
       this._playerTime = this._players[0];
     else 
       this._playerTime = this._players[1];
+
+    this.addPlayerTimeAndWinnerMessage(`Vez do jogador: ${this._playerTime.name}`);
+  }
+
+  getQuadrantsArray() {
+    const quadrants = [];
+    document.querySelectorAll('.quadrant').forEach(quadrant => {
+      quadrants.push(quadrant);
+    });
+    return quadrants;
+  }
+  
+  getQuadrantsArrayValue() {
+    const quadrants = [];
+
+    this.getQuadrantsArray().forEach(quadrant => {
+      quadrants.push(quadrant.textContent);
+    });
     
-    this._gameTemplate.addValueInElement('#player-time',
-     `Vez do jogador: ${this._playerTime.name}`);
+    return quadrants;
   }
 
   play() {
     this.changePlayerTime();
+    const quadrants = this.getQuadrantsArray();
 
-    let quadrants = document.querySelectorAll('.quadrant');
-
-    quadrants.forEach((quadrant) => {
+    quadrants.some((quadrant) => {
       quadrant.addEventListener('click', () => {
+        this.addCharInQuadrant(quadrant);
 
-        let h1 = document.createElement('h1');
-        h1.textContent = this._playerTime.char;
-        quadrant.innerHTML = '';
-        quadrant.appendChild(h1);
+        if (this.gameHasEnded()) return true;
 
         this.changePlayerTime();
       });
     });
+  }
+
+  gameHasEnded() {
+    if (this.withoutWinner()) {
+      this.addPlayerTimeAndWinnerMessage('O jogo terminou sem vencedores');
+      return true;
+    }
+
+    return false;
+  }
+
+  withoutWinner() {
+    return document.querySelectorAll('.space').length == 0;
+  }
+
+  addCharInQuadrant(quadrant) {
+    let h1 = document.createElement('h1');
+    h1.textContent = this._playerTime.char;
+    quadrant.innerHTML = '';
+    quadrant.appendChild(h1);
+  }
+
+  addPlayerTimeAndWinnerMessage(message) {
+    this._gameTemplate.addValueInElement('#player-time-winner', message);
   }
 
   addPlayer(event) {

@@ -18,7 +18,7 @@ class GameTemplate extends Template {
     </div>
     <div class="game">
       <div class="text-center col-md-8">
-        <h4 id="player-time">Vez do jogador: Naldson</h4>
+        <h4 id="player-time-winner">Vez do jogador: Naldson</h4>
       </div>
       <div class="row col-md-8">
         <div class="quadrant" id="quadrant-1">
