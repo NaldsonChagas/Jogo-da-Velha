@@ -78,6 +78,9 @@ class TicTacToe {
     if (this.withoutWinner()) {
       this.addPlayerTimeAndWinnerMessage('O jogo terminou sem vencedores');
       return true;
+    } else if (this.horizontalWin()) {
+      this.addPlayerTimeAndWinnerMessage(`${this._winnerPlayer.name} venceu!`);
+      return true;
     }
 
     return false;
@@ -87,8 +90,33 @@ class TicTacToe {
     return document.querySelectorAll('.space').length == 0;
   }
 
+  horizontallWin() {
+    const quadrants = this.getQuadrantsArrayValue();
+    const rows = [
+      [quadrants[0], quadrants[1], quadrants[2]], 
+      [quadrants[3], quadrants[4], quadrants[5]], 
+      [quadrants[6], quadrants[7], quadrants[8]],
+    ];
+
+    let hasWinner = false;
+
+    rows.some(row => {
+      if (row[0] == row[1] && row[1] == row[2]) {
+        this.defineWinner(row[0]);
+        hasWinner = true;
+        return true;
+      }
+    }); 
+    return hasWinner;
+  }
+
+  defineWinner(char) {
+    this._winnerPlayer = this._players[0].char == char ? this._players[0] :
+     this._players[1];
+  }
+
   addCharInQuadrant(quadrant) {
-    let h1 = document.createElement('h1');
+    const h1 = document.createElement('h1');
     h1.textContent = this._playerTime.char;
     quadrant.innerHTML = '';
     quadrant.appendChild(h1);
