@@ -64,7 +64,7 @@ class TicTacToe {
     if (this.withoutWinner()) {
       this.addPlayerTimeAndWinnerMessage('O jogo terminou sem vencedores');
       return true;
-    } else if (this.verticalOrHorizontalWin()) {
+    } else if (this.hasWinner()) {
       this.addPlayerTimeAndWinnerMessage(`${this._winnerPlayer.name} venceu!`);
       return true;
     }
@@ -76,9 +76,9 @@ class TicTacToe {
     return document.querySelectorAll('.space').length == 0;
   }
 
-  verticalOrHorizontalWin() {
+  hasWinner() {
     const quadrants = this.getQuadrantsArrayValue();
-    const linesAndColumns = this.linesAndColumns(quadrants);
+    const linesAndColumns = this.checkSequenceToWin(quadrants);
 
     return linesAndColumns.some(element => {
       return element.some(e => {
@@ -90,9 +90,10 @@ class TicTacToe {
     }); 
   }
 
-  linesAndColumns(quadrants) {
-    let columns = [];
-    let rows = [];
+  checkSequenceToWin(quadrants) {
+    const columns = [];
+    const rows = [];
+    const diagonal = this.pushQuadrantsOndiagonal(quadrants);;
 
     for (let i = 0; i < 3; i++) {
       columns.push([quadrants[i], quadrants[i+3], quadrants[i+6]]); 
@@ -102,7 +103,14 @@ class TicTacToe {
       rows.push([quadrants[i], quadrants[i+1], quadrants[i+2]]);
     }
 
-    return [rows, columns];
+    return [rows, columns, diagonal];
+  }
+
+  pushQuadrantsOndiagonal(quadrants) {
+    const diagonal = [];
+    diagonal.push([quadrants[0], quadrants[4], quadrants[8]]);
+    diagonal.push([quadrants[2], quadrants[4], quadrants[6]]);
+    return diagonal;
   }
 
   defineWinner(char) {
