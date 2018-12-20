@@ -11,21 +11,7 @@ class TicTacToe {
     this._playerTime;
     this._winnerPlayer;
 
-    //this.init();
-    this.initOnGame();
-  }
-
-  /*
-
-    TEMPORARY METHOD
-
-  */
-  initOnGame() {
-    this._players.push(new Player('Naldson', 'X'));
-    this._players.push(new Player('Llala', 'O'));
-
-    this.initGameTemplate();
-    
+    this.init();
   }
 
   init() {
@@ -78,7 +64,7 @@ class TicTacToe {
     if (this.withoutWinner()) {
       this.addPlayerTimeAndWinnerMessage('O jogo terminou sem vencedores');
       return true;
-    } else if (this.horizontalWin()) {
+    } else if (this.verticalOrHorizontalWin()) {
       this.addPlayerTimeAndWinnerMessage(`${this._winnerPlayer.name} venceu!`);
       return true;
     }
@@ -90,24 +76,33 @@ class TicTacToe {
     return document.querySelectorAll('.space').length == 0;
   }
 
-  horizontallWin() {
+  verticalOrHorizontalWin() {
     const quadrants = this.getQuadrantsArrayValue();
-    const rows = [
-      [quadrants[0], quadrants[1], quadrants[2]], 
-      [quadrants[3], quadrants[4], quadrants[5]], 
-      [quadrants[6], quadrants[7], quadrants[8]],
-    ];
+    const linesAndColumns = this.linesAndColumns(quadrants);
 
-    let hasWinner = false;
-
-    rows.some(row => {
-      if (row[0] == row[1] && row[1] == row[2]) {
-        this.defineWinner(row[0]);
-        hasWinner = true;
-        return true;
-      }
+    return linesAndColumns.some(element => {
+      return element.some(e => {
+        if (e[0] == e[1] && e[1] == e[2]) {
+          this.defineWinner(e[0]);
+          return true;
+        }
+      });
     }); 
-    return hasWinner;
+  }
+
+  linesAndColumns(quadrants) {
+    let columns = [];
+    let rows = [];
+
+    for (let i = 0; i < 3; i++) {
+      columns.push([quadrants[i], quadrants[i+3], quadrants[i+6]]); 
+    }
+
+    for (let i = 0; i < 7; i+=3) {
+      rows.push([quadrants[i], quadrants[i+1], quadrants[i+2]]);
+    }
+
+    return [rows, columns];
   }
 
   defineWinner(char) {

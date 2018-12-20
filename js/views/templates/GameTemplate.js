@@ -21,39 +21,21 @@ class GameTemplate extends Template {
         <h4 id="player-time-winner">Vez do jogador: Naldson</h4>
       </div>
       <div class="row col-md-8">
-        <div class="quadrant" id="quadrant-1">
-          <h1 class="space">1</h1>
-        </div>
-        <div class="quadrant" id="quadrant-2">
-          <h1 class="space">2</h1>
-        </div>
-        <div class="quadrant" id="quadrant-3">
-          <h1 class="space">3</h1>
-        </div>
+        <div class="quadrant"><h1 class="space">1</h1></div>
+        <div class="quadrant"><h1 class="space">2</h1></div>
+        <div class="quadrant"><h1 class="space">3</h1></div>
       </div>
 
       <div class="row col-md-8">
-        <div class="quadrant" id="quadrant-4">
-          <h1 class="space">4</h1>
-        </div>
-        <div class="quadrant" id="quadrant-5">
-          <h1 class="space">5</h1>
-        </div>
-        <div class="quadrant" id="quadrant-6">
-          <h1 class="space">6</h1>
-        </div>
+        <div class="quadrant"><h1 class="space">4</h1></div>
+        <div class="quadrant"><h1 class="space">5</h1></div>
+        <div class="quadrant"><h1 class="space">6</h1></div>
       </div>
 
       <div class="row col-md-8">
-        <div class="quadrant" id="quadrant-7">
-          <h1 class="space">7</h1>
-        </div>
-        <div class="quadrant" id="quadrant-8">
-          <h1 class="space">8</h1>
-        </div>
-        <div class="quadrant" id="quadrant-9">
-          <h1 class="space">9</h1>
-        </div>
+        <div class="quadrant"><h1 class="space">7</h1></div>
+        <div class="quadrant"><h1 class="space">8</h1></div>
+        <div class="quadrant"><h1 class="space">9</h1></div>
       </div>
     </div>
     `;
