@@ -129,6 +129,12 @@ class TicTacToe {
     this._gameTemplate.addValueInElement('#player-time-winner', message);
   }
 
+  addErrorMessage(message) {
+    const errorMessageEl = document.querySelector('#error-message');
+    errorMessageEl.classList.add('alert', 'alert-danger', 'text-center');
+    errorMessageEl.textContent = message;
+  }
+
   addPlayer(event) {
     event.preventDefault();
 
@@ -136,6 +142,13 @@ class TicTacToe {
     const player1NameEl = $('#player1-name');
     const player2NameEl = $('#player2-name');
     const player1CharEl = $('#char');
+
+    let validator = new ValidatePlayers(player1NameEl, player2NameEl);
+
+    if (!validator.isValid()) {
+      this.addErrorMessage(validator.getErrorMessage());
+      return;
+    }
 
     this._players.push(
       new Player(player1NameEl.value, player1CharEl.value)
