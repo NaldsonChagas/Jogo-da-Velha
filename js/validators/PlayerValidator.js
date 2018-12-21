@@ -1,4 +1,4 @@
-class ValidatePlayers {
+class PlayerValidator {
 
   constructor(...elements) {
     this._elements = elements;

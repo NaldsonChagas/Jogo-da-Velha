@@ -145,7 +145,7 @@ class TicTacToe {
     const player2NameEl = $('#player2-name');
     const player1CharEl = $('#char');
 
-    let validator = new PlayersValidator(player1NameEl, player2NameEl);
+    let validator = new PlayerValidator(player1NameEl, player2NameEl);
 
     if (!validator.isValid()) {
       this._formTemplate.addErrorMessage(validator.getErrorMessage());
