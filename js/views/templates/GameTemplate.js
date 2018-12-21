@@ -19,6 +19,7 @@ class GameTemplate extends Template {
     <div class="game">
       <div class="text-center col-md-8">
         <h4 id="player-time-winner">Vez do jogador: Naldson</h4>
+        <div class="text-center" id="btn-restart"></div>
       </div>
       <div class="row col-md-8">
         <div class="quadrant"><h1 class="space">1</h1></div>
@@ -39,6 +40,13 @@ class GameTemplate extends Template {
       </div>
     </div>
     `;
+  }
+
+  addBtnRestart() {
+    const btnRestartEl = document.querySelector('#btn-restart');
+    const btn = btnRestartEl.appendChild(document.createElement('button'));
+    btn.classList.add('btn', 'btn-info');
+    btn.textContent = 'Reiniciar partida';
   }
 
   addValueInElement(element, value) {

@@ -52,7 +52,11 @@ class TicTacToe {
     quadrants.some((quadrant) => {
       quadrant.addEventListener('click', () => {
         this.addCharInQuadrant(quadrant);
-        if (this.gameHasEnded()) return true;
+        if (this.gameHasEnded()) {
+          this._gameTemplate.addBtnRestart();
+          this.restartMatch();
+          return true;
+        }
         this.changePlayerTime();
       });
     });
@@ -68,6 +72,13 @@ class TicTacToe {
     }
 
     return false;
+  }
+
+  restartMatch() {
+    const addBtnRestart = document.querySelector('#btn-restart');
+    addBtnRestart.addEventListener('click', () => {
+      this.initGameTemplate();
+    });
   }
 
   withoutWinner() {
