@@ -51,7 +51,9 @@ class TicTacToe {
 
     quadrants.some((quadrant) => {
       quadrant.addEventListener('click', () => {
-        this.addCharInQuadrant(quadrant);
+        this._gameTemplate.addCharInQuadrant(quadrant, 
+          this._playerTime.char, this.gameHasEnded());
+
         if (this.gameHasEnded()) {
           this._gameTemplate.addBtnRestart();
           this.restartMatch();
@@ -127,22 +129,8 @@ class TicTacToe {
      this._players[1];
   }
 
-  addCharInQuadrant(quadrant) {
-    if (this.gameHasEnded()) return;
-    const h1 = document.createElement('h1');
-    h1.textContent = this._playerTime.char;
-    quadrant.innerHTML = '';
-    quadrant.appendChild(h1);
-  }
-
   addPlayerTimeAndWinnerMessage(message) {
     this._gameTemplate.addValueInElement('#player-time-winner', message);
-  }
-
-  addErrorMessage(message) {
-    const errorMessageEl = document.querySelector('#error-message');
-    errorMessageEl.classList.add('alert', 'alert-danger', 'text-center');
-    errorMessageEl.textContent = message;
   }
 
   addPlayer(event) {
@@ -156,7 +144,7 @@ class TicTacToe {
     let validator = new ValidatePlayers(player1NameEl, player2NameEl);
 
     if (!validator.isValid()) {
-      this.addErrorMessage(validator.getErrorMessage());
+      this._formTemplate.addErrorMessage(validator.getErrorMessage());
       return;
     }
 

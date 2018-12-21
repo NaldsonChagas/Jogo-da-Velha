@@ -42,6 +42,14 @@ class GameTemplate extends Template {
     `;
   }
 
+  addCharInQuadrant(quadrant, char, gameHasEnded) {
+    if (gameHasEnded) return;
+    const h1 = document.createElement('h1');
+    h1.textContent = char;
+    quadrant.innerHTML = '';
+    quadrant.appendChild(h1);
+  }
+
   addBtnRestart() {
     const btnRestartEl = document.querySelector('#btn-restart');
     const btn = btnRestartEl.appendChild(document.createElement('button'));

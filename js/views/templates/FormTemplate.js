@@ -24,4 +24,10 @@ class FormTemplate extends Template {
     `;
   }
 
+  addErrorMessage(message) {
+    const errorMessageEl = document.querySelector('#error-message');
+    errorMessageEl.classList.add('alert', 'alert-danger', 'text-center');
+    errorMessageEl.textContent = message;
+  }
+
 }
