@@ -24,7 +24,7 @@ class TicTacToe {
     else 
       this._playerTime = this._players[1];
 
-    this.addPlayerTimeAndWinnerMessage(`Vez do jogador: ${this._playerTime.name}`);
+    this.addPlayerMessage(`Vez do jogador: ${this._playerTime.name}`);
   }
 
   getQuadrantsArray() {
@@ -51,25 +51,29 @@ class TicTacToe {
 
     quadrants.some((quadrant) => {
       quadrant.addEventListener('click', () => {
-        this._gameTemplate.addCharInQuadrant(quadrant, 
-          this._playerTime.char, this.gameHasEnded());
+        try {
+          this._gameTemplate.addCharInQuadrant(quadrant, 
+            this._playerTime.char, this.gameHasEnded());
 
-        if (this.gameHasEnded()) {
-          this._gameTemplate.addBtnRestart();
-          this.restartMatch();
-          return true;
+          if (this.gameHasEnded()) {
+            this._gameTemplate.addBtnRestart();
+            this.restartMatch();
+            return true;
+          }
+          this.changePlayerTime();
+        } catch (e) {
+          this.addPlayerMessage(e.message);
         }
-        this.changePlayerTime();
       });
     });
   }
 
   gameHasEnded() {
     if (this.withoutWinner()) {
-      this.addPlayerTimeAndWinnerMessage('O jogo terminou sem vencedores');
+      this.addPlayerMessage('O jogo terminou sem vencedores');
       return true;
     } else if (this.hasWinner()) {
-      this.addPlayerTimeAndWinnerMessage(`${this._winnerPlayer.name} venceu!`);
+      this.addPlayerMessage(`${this._winnerPlayer.name} venceu!`);
       return true;
     }
 
@@ -129,7 +133,7 @@ class TicTacToe {
      this._players[1];
   }
 
-  addPlayerTimeAndWinnerMessage(message) {
+  addPlayerMessage(message) {
     this._gameTemplate.addValueInElement('#player-time-winner', message);
   }
 

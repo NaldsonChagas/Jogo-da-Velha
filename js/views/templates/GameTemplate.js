@@ -43,7 +43,11 @@ class GameTemplate extends Template {
   }
 
   addCharInQuadrant(quadrant, char, gameHasEnded) {
-    if (gameHasEnded) return;
+    if (gameHasEnded) 
+      throw new Error('Fim de jogo! Por favor, reinicie a partida');
+    else if (['X', 'O'].includes(quadrant.textContent))
+      throw new Error('Clique em um local que não esteja preenchido');
+
     const h1 = document.createElement('h1');
     h1.textContent = char;
     quadrant.innerHTML = '';
