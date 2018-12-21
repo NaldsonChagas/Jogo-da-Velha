@@ -52,9 +52,7 @@ class TicTacToe {
     quadrants.some((quadrant) => {
       quadrant.addEventListener('click', () => {
         this.addCharInQuadrant(quadrant);
-
         if (this.gameHasEnded()) return true;
-
         this.changePlayerTime();
       });
     });
@@ -119,6 +117,7 @@ class TicTacToe {
   }
 
   addCharInQuadrant(quadrant) {
+    if (this.gameHasEnded()) return;
     const h1 = document.createElement('h1');
     h1.textContent = this._playerTime.char;
     quadrant.innerHTML = '';
